@@ -1,8 +1,5 @@
 import { Button, Container, Fab, Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import NavigationIcon from '@mui/icons-material/Navigation';
-import Box from '@mui/material/Box';
-import './App.css';
 import AnswersCard from './components/AnswersCard';
 import { getQuestion, QuestionDetail } from './actions/getQuestions';
 import Loading from './components/Loading';
@@ -16,7 +13,7 @@ const style = {
   backgroundPosition: "top"
 }
 const difficulty = ["hard", "easy", "medium"]
-function App() {
+const App: React.FC = () => {
   const [questions, setQuestions] = useState<QuestionDetail[]>([]);
   const [currenrQuestion, setcurrentQuestion] = useState<number>(0);
   const [start, setStart] = useState<boolean>(false);
@@ -42,7 +39,7 @@ function App() {
     if (currenrQuestion + 1 >= 10) {
       setStart(false);
       setQuestions([])
-    } 
+    }
     setcurrentQuestion(currenrQuestion + 1);
     if (ans === correct_answer) {
       setScore(score + 1);
@@ -80,7 +77,7 @@ function App() {
                 setStart(true)
               }
             }}
-          >{currenrQuestion <= 9? "Start" : "Play Again"}</Button>}
+          >{currenrQuestion <= 9 ? "Start" : "Play Again"}</Button>}
         </div>
         {start && questions.length === 0 && <Loading />}
       </Container>
